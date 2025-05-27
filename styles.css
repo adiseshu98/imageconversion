@@ -1,0 +1,541 @@
+/* Light theme (default) */
+:root,
+[data-bs-theme="light"] {
+    --bg-color: #ffffff;
+    --text-color: #212529;
+    --border-color: #dee2e6;
+    --muted-color: #6c757d;
+    --preview-border-color: #ddd;
+    --preview-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --preview-hover-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    --dropzone-border: #ccc;
+    --dropzone-bg: #f8f9fa;
+    --dropzone-hover-bg: #e9ecef;
+    --dropzone-hover-border: #0d6efd;
+    --settings-bg: #f8f9fa;
+    --modal-header-bg: #f8f9fa;
+    --scrollbar-track: #f1f1f1;
+    --scrollbar-thumb: #888;
+    --scrollbar-thumb-hover: #555;
+    --watermark-shadow: rgba(0, 0, 0, 0.5);
+    --custom-badge-bg: #0d6efd;
+    --slider-track: #dee2e6;
+    --slider-thumb: #0d6efd;
+    --slider-thumb-hover: #0b5ed7;
+    --bs-body-bg: #ffffff !important;
+    --bs-body-color: #212529 !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme */
+[data-bs-theme="dark"] {
+    --bg-color: #212529;
+    --text-color: #f8f9fa;
+    --border-color: #495057;
+    --muted-color: #adb5bd;
+    --preview-border-color: #444;
+    --preview-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    --preview-hover-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    --dropzone-border: #444;
+    --dropzone-bg: #2b3035;
+    --dropzone-hover-bg: #343a40;
+    --dropzone-hover-border: #0d6efd;
+    --settings-bg: #2b3035;
+    --modal-header-bg: #2b3035;
+    --scrollbar-track: #343a40;
+    --scrollbar-thumb: #666;
+    --scrollbar-thumb-hover: #888;
+    --watermark-shadow: rgba(0, 0, 0, 0.7);
+    --custom-badge-bg: #0d6efd;
+    --slider-track: #495057;
+    --slider-thumb: #0d6efd;
+    --slider-thumb-hover: #0b5ed7;
+    --bs-body-bg: #212529 !important;
+    --bs-body-color: #f8f9fa !important;
+}
+
+/* Apply theme colors */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1030;
+}
+
+.theme-toggle button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    opacity: 1;
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle button:hover i {
+    transform: scale(1.1);
+}
+
+/* Ad Containers */
+.ad-container-top,
+.ad-container-bottom,
+.ad-container-side {
+    background-color: var(--dropzone-bg);
+    border: 1px solid var(--preview-border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    min-height: 100px;
+}
+
+.ad-label {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bs-body-bg);
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Existing styles with theme variables */
+.preview-image-container {
+    position: relative;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.preview-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: var(--preview-shadow);
+}
+
+.preview-info {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+.card {
+    box-shadow: var(--preview-shadow);
+}
+
+.settings-panel {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background-color: var(--settings-bg);
+}
+
+.settings-panel .card-body {
+    padding: 1rem;
+}
+
+.settings-panel h6 {
+    margin-bottom: 0.5rem;
+    color: var(--bs-body-color);
+    font-weight: 600;
+}
+
+#imagePreview {
+    gap: 20px;
+}
+
+.preview-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-image-wrapper:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.preview-action-btn {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preview-action-btn:hover {
+    transform: scale(1.05);
+    background: #fff;
+}
+
+/* Color Picker Styling */
+.form-control-color {
+    width: 3rem;
+    padding: 0.375rem;
+    border-radius: 0.25rem;
+}
+
+/* Shadow Options */
+#shadowOptions {
+    padding: 1rem;
+    border: 1px solid var(--preview-border-color);
+    border-radius: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+/* Advanced Effects Preview */
+.effect-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.vintage-effect {
+    filter: sepia(0.5) hue-rotate(-30deg) saturate(1.4);
+}
+
+.vignette-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.5) 150%);
+}
+
+.preview-image-wrapper .action-buttons {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-image-wrapper:hover .action-buttons {
+    opacity: 1;
+}
+
+.preview-image-wrapper .action-btn {
+    background: var(--bs-body-bg);
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.8em;
+    border: 1px solid var(--preview-border-color);
+    transition: all 0.2s ease;
+}
+
+.preview-image-wrapper .action-btn:hover {
+    transform: scale(1.1);
+}
+
+.preview-image-wrapper .remove-btn {
+    color: #dc3545;
+}
+
+.preview-image-wrapper .remove-btn:hover {
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.preview-image-wrapper .settings-btn {
+    color: #0d6efd;
+}
+
+.preview-image-wrapper .settings-btn:hover {
+    background: rgba(13, 110, 253, 0.1);
+}
+
+.preview-image-wrapper .download-btn {
+    color: #198754;
+}
+
+.preview-image-wrapper .download-btn:hover {
+    background: rgba(25, 135, 84, 0.1);
+}
+
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.form-range {
+    height: 1.5rem;
+    padding: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.input-group .form-range {
+    padding: 0 1rem;
+}
+
+#qualityValue, #effectStrengthValue, #watermarkOpacityValue {
+    font-weight: bold;
+    color: var(--text-muted);
+    min-width: 3rem;
+    text-align: center;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.drop-zone {
+    border: 2px dashed var(--dropzone-border);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    background: var(--dropzone-bg);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.drop-zone.drag-over {
+    background: var(--dropzone-hover-bg);
+    border-color: var(--dropzone-hover-border);
+}
+
+.drop-zone-text {
+    color: var(--text-muted);
+    font-size: 1.1em;
+}
+
+.file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.preview-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.form-check {
+    margin-bottom: 0.5rem;
+}
+
+.preview-image-wrapper.has-custom-settings {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.preview-image-wrapper.has-custom-settings::before {
+    content: "Custom";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d6efd;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    z-index: 1;
+}
+
+.preview-size {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 4px;
+}
+
+.watermark-preview {
+    position: absolute;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+/* Custom scrollbar for settings panel */
+.settings-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.settings-panel::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 4px;
+}
+
+.settings-panel::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+.settings-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Modal customization */
+.modal-content {
+    border-radius: 8px;
+    background-color: var(--bs-body-bg);
+}
+
+.modal-header {
+    background-color: var(--modal-header-bg);
+    border-bottom: 1px solid var(--preview-border-color);
+}
+
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .settings-panel {
+        position: static;
+        max-height: none;
+        margin-bottom: 1rem;
+    }
+
+    .preview-image-wrapper {
+        width: calc(50% - 20px);
+    }
+
+    .ad-container-side {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .preview-image-wrapper {
+        width: 100%;
+    }
+}
+
+/* Range Input Styling */
+.form-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.5rem;
+    background: var(--slider-track);
+    border-radius: 0.25rem;
+    border: 0;
+}
+
+.form-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background: var(--slider-thumb);
+    border: 0;
+    border-radius: 50%;
+    margin-top: -0.25rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.form-range::-webkit-slider-thumb:hover {
+    background: var(--slider-thumb-hover);
+}
+
+.form-range::-moz-range-track {
+    width: 100%;
+    height: 0.5rem;
+    background: var(--slider-track);
+    border-radius: 0.25rem;
+    border: 0;
+}
+
+.form-range::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    background: var(--slider-thumb);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.form-range::-moz-range-thumb:hover {
+    background: var(--slider-thumb-hover);
+}
+
+/* Theme toggle button */
+#themeToggle {
+    color: inherit;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+#themeToggle:hover {
+    opacity: 1;
+}
+
+#themeToggle i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+#themeToggle:hover i {
+    transform: scale(1.1);
+}
+
+/* Light theme specific styles */
+[data-bs-theme="light"] {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #212529;
+}
+
+/* Ensure theme toggle is visible in both themes */
+.theme-toggle {
+    mix-blend-mode: difference;
+} 

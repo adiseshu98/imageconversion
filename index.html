@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-1825255096155800">
+    <title>Advanced Image Converter</title>
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825255096155800" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="btn" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- Top AdSense -->
+    <div class="ad-container-top mb-4">
+        <div class="ad-label">Advertisement</div>
+        <!-- AdSense Unit -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1825255096155800"
+             data-ad-slot="YOUR_AD_SLOT"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <h1 class="text-center mb-4">Advanced Image Converter</h1>
+        
+        <div class="row">
+            <!-- Global Settings Panel -->
+            <div class="col-md-3">
+                <!-- Side AdSense -->
+                <div class="ad-container-side mb-3 d-none d-md-block">
+                    <div class="ad-label">Advertisement</div>
+                    <!-- AdSense Unit -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-1825255096155800"
+                         data-ad-slot="YOUR_AD_SLOT"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                </div>
+
+                <div class="card settings-panel">
+                    <div class="card-header">
+                        <h5 class="mb-0">Global Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="useGlobalSettings" checked>
+                            <label class="form-check-label" for="useGlobalSettings">
+                                Apply settings to all images
+                            </label>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Output Format</h6>
+                            <select class="form-select" id="formatSelect">
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WebP</option>
+                                <option value="avif">AVIF</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Quality</h6>
+                            <input type="range" class="form-range" id="qualitySlider" min="1" max="100" value="90">
+                            <div class="text-center" id="qualityValue">90%</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Effects</h6>
+                            <select class="form-select mb-2" id="effectSelect">
+                                <option value="none">None</option>
+                                <!-- Basic Effects -->
+                                <optgroup label="Basic Effects">
+                                    <option value="grayscale">Grayscale</option>
+                                    <option value="sepia">Sepia</option>
+                                    <option value="invert">Invert</option>
+                                    <option value="blur">Blur</option>
+                                </optgroup>
+                                <!-- Color Adjustments -->
+                                <optgroup label="Color Adjustments">
+                                    <option value="brightness">Brightness</option>
+                                    <option value="contrast">Contrast</option>
+                                    <option value="saturation">Saturation</option>
+                                    <option value="hue-rotate">Hue Rotate</option>
+                                </optgroup>
+                                <!-- Artistic Effects -->
+                                <optgroup label="Artistic Effects">
+                                    <option value="vintage">Vintage</option>
+                                    <option value="vignette">Vignette</option>
+                                    <option value="oil-painting">Oil Painting</option>
+                                    <option value="posterize">Posterize</option>
+                                </optgroup>
+                                <!-- Special Effects -->
+                                <optgroup label="Special Effects">
+                                    <option value="noise">Noise</option>
+                                    <option value="pixelate">Pixelate</option>
+                                    <option value="duotone">Duotone</option>
+                                </optgroup>
+                            </select>
+                            <div id="effectStrength" class="d-none">
+                                <div class="input-group">
+                                    <span class="input-group-text">Strength</span>
+                                    <input type="range" class="form-range" id="effectStrengthSlider" min="0" max="100" value="50">
+                                    <span class="input-group-text" id="effectStrengthValue">50%</span>
+                                </div>
+                            </div>
+                            <!-- Effect Options -->
+                            <div id="effectOptions" class="mt-2 d-none">
+                                <!-- Duotone Colors -->
+                                <div id="duotoneOptions" class="d-none">
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">Color 1</span>
+                                        <input type="color" class="form-control form-control-color" id="duotoneColor1" value="#ff0000">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Color 2</span>
+                                        <input type="color" class="form-control form-control-color" id="duotoneColor2" value="#0000ff">
+                                    </div>
+                                </div>
+                                <!-- Vintage Options -->
+                                <div id="vintageOptions" class="d-none">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="vintageVignette" checked>
+                                        <label class="form-check-label" for="vintageVignette">
+                                            Add vignette effect
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="vintageGrain" checked>
+                                        <label class="form-check-label" for="vintageGrain">
+                                            Add film grain
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Resize</h6>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Width</span>
+                                <input type="number" class="form-control" id="resizeWidth" placeholder="Auto">
+                                <span class="input-group-text">px</span>
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Height</span>
+                                <input type="number" class="form-control" id="resizeHeight" placeholder="Auto">
+                                <span class="input-group-text">px</span>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="maintainAspectRatio" checked>
+                                <label class="form-check-label" for="maintainAspectRatio">
+                                    Maintain aspect ratio
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Advanced Options</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="autoRotate">
+                                <label class="form-check-label" for="autoRotate">
+                                    Auto-rotate based on EXIF
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="stripMetadata">
+                                <label class="form-check-label" for="stripMetadata">
+                                    Strip metadata
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="optimizeOutput">
+                                <label class="form-check-label" for="optimizeOutput">
+                                    Optimize output size
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sharpenImage">
+                                <label class="form-check-label" for="sharpenImage">
+                                    Sharpen after resize
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Watermark</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="enableWatermark">
+                                <label class="form-check-label" for="enableWatermark">
+                                    Add watermark
+                                </label>
+                            </div>
+                            <input type="text" class="form-control mb-2" id="watermarkText" placeholder="Watermark text">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Opacity</span>
+                                <input type="range" class="form-range" id="watermarkOpacity" min="1" max="100" value="30">
+                                <span class="input-group-text" id="watermarkOpacityValue">30%</span>
+                            </div>
+                            <select class="form-select" id="watermarkPosition">
+                                <option value="center">Center</option>
+                                <option value="top-left">Top Left</option>
+                                <option value="top-right">Top Right</option>
+                                <option value="bottom-left">Bottom Left</option>
+                                <option value="bottom-right">Bottom Right</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Color Adjustments</h6>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Temperature</span>
+                                <input type="range" class="form-range" id="temperature" min="-100" max="100" value="0">
+                                <span class="input-group-text" id="temperatureValue">0</span>
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Tint</span>
+                                <input type="range" class="form-range" id="tint" min="-100" max="100" value="0">
+                                <span class="input-group-text" id="tintValue">0</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Border Options</h6>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Width</span>
+                                <input type="number" class="form-control" id="borderWidth" min="0" max="50" value="0">
+                                <span class="input-group-text">px</span>
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Color</span>
+                                <input type="color" class="form-control form-control-color" id="borderColor" value="#000000">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">Style</span>
+                                <select class="form-select" id="borderStyle">
+                                    <option value="solid">Solid</option>
+                                    <option value="dashed">Dashed</option>
+                                    <option value="dotted">Dotted</option>
+                                    <option value="double">Double</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Corner Options</h6>
+                            <div class="input-group">
+                                <span class="input-group-text">Radius</span>
+                                <input type="range" class="form-range" id="cornerRadius" min="0" max="50" value="0">
+                                <span class="input-group-text" id="cornerRadiusValue">0px</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Shadow Options</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="enableShadow">
+                                <label class="form-check-label" for="enableShadow">
+                                    Add shadow
+                                </label>
+                            </div>
+                            <div id="shadowOptions" class="d-none">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">Blur</span>
+                                    <input type="range" class="form-range" id="shadowBlur" min="0" max="50" value="10">
+                                    <span class="input-group-text" id="shadowBlurValue">10px</span>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">Color</span>
+                                    <input type="color" class="form-control form-control-color" id="shadowColor" value="#000000">
+                                    <input type="range" class="form-range" id="shadowOpacity" min="0" max="100" value="30">
+                                    <span class="input-group-text" id="shadowOpacityValue">30%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-md-9">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h5>Upload Images</h5>
+                            <div id="dropZone" class="drop-zone mb-2">
+                                <div class="drop-zone-text">
+                                    Drag & drop images here or click to upload
+                                    <input type="file" class="file-input" id="imageInput" accept="image/*" multiple>
+                                </div>
+                            </div>
+                            <div class="text-end mb-2">
+                                <button class="btn btn-danger btn-sm" id="removeAllBtn" disabled>
+                                    <i class="fas fa-trash-alt"></i> Remove All
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" id="convertBtn" disabled>Convert</button>
+                            <button class="btn btn-success ms-2" id="downloadBtn" disabled>Download All</button>
+                            <button class="btn btn-info ms-2" id="downloadZipBtn" disabled>Download as ZIP</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="previewArea">
+                    <h5>Preview</h5>
+                    <div class="row" id="imagePreview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom AdSense -->
+    <div class="ad-container-bottom mt-4">
+        <div class="ad-label">Advertisement</div>
+        <!-- AdSense Unit -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1825255096155800"
+             data-ad-slot="YOUR_AD_SLOT"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-3 border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Image Converter by Adi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="privacy.html" class="text-decoration-none me-3" target="_blank">Privacy Policy</a>
+                    <a href="terms.html" class="text-decoration-none me-3" target="_blank">Terms of Service</a>
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#cookieModal">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Modal -->
+    <div class="modal fade" id="cookieModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">🍪 Cookie Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cookie-explanation mb-4">
+                        <h6>We Value Your Privacy</h6>
+                        <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+                    </div>
+                    
+                    <div class="cookie-options">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="essentialCookies" checked disabled>
+                            <label class="form-check-label" for="essentialCookies">
+                                <strong>Essential Cookies</strong>
+                                <div class="text-muted small">Required for basic website functionality. Cannot be disabled.</div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="analyticsCookies">
+                            <label class="form-check-label" for="analyticsCookies">
+                                <strong>Analytics Cookies</strong>
+                                <div class="text-muted small">Help us understand how visitors interact with our website.</div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="advertisingCookies">
+                            <label class="form-check-label" for="advertisingCookies">
+                                <strong>Advertising Cookies</strong>
+                                <div class="text-muted small">Used to show you relevant advertisements across different websites.</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">Save Preferences</button>
+                        <button type="button" class="btn btn-primary" onclick="acceptAllCookies()">Accept All</button>
+                    </div>
+                    <a href="privacy.html#cookies" target="_blank" class="text-decoration-none small">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Settings Modal -->
+    <div class="modal fade" id="imageSettingsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Custom Image Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Custom settings form will be cloned from global settings -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveImageSettings">Apply Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize AdSense ads
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+        // Cookie consent functionality
+        function acceptAllCookies() {
+            document.getElementById('essentialCookies').checked = true;
+            document.getElementById('analyticsCookies').checked = true;
+            document.getElementById('advertisingCookies').checked = true;
+            saveCookiePreferences();
+        }
+
+        function saveCookiePreferences() {
+            const preferences = {
+                essential: true, // Always true
+                analytics: document.getElementById('analyticsCookies').checked,
+                advertising: document.getElementById('advertisingCookies').checked
+            };
+            
+            localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+            
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('cookieModal'));
+            modal.hide();
+            
+            // Show a toast or notification
+            showNotification('Cookie preferences saved!');
+        }
+
+        function showNotification(message) {
+            // Create and show a Bootstrap toast
+            const toastHtml = `
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div class="toast" role="alert">
+                        <div class="toast-header">
+                            <strong class="me-auto">🍪 Cookie Settings</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', toastHtml);
+            const toastEl = document.querySelector('.toast');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+            
+            // Remove the toast element after it's hidden
+            toastEl.addEventListener('hidden.bs.toast', () => {
+                toastEl.remove();
+            });
+        }
+
+        // Check if user has already set cookie preferences
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPreferences = localStorage.getItem('cookiePreferences');
+            if (!savedPreferences) {
+                // Show cookie modal on first visit
+                const cookieModal = new bootstrap.Modal(document.getElementById('cookieModal'));
+                cookieModal.show();
+            } else {
+                // Apply saved preferences
+                const preferences = JSON.parse(savedPreferences);
+                document.getElementById('analyticsCookies').checked = preferences.analytics;
+                document.getElementById('advertisingCookies').checked = preferences.advertising;
+            }
+        });
+    </script>
+</body>
+</html> 
