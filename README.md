@@ -1,71 +1,121 @@
-# Image Format Converter
+# Advanced Image Converter
 
-A web-based application for converting images between different formats with drag-and-drop functionality.
+A powerful web-based image converter with advanced features for image processing and manipulation.
 
 ## Features
 
-- Convert images between formats:
-  - PNG to WEBP
-  - JPG to WEBP
-  - PNG to JPG
-  - JPG to PNG
-- Drag-and-drop file upload
-- Image preview
-- Single image download
-- Bulk download as ZIP
-- Copy filename functionality
-- Image replacement
-- Individual image removal
-
-## Prerequisites
-
-- Node.js (v14 or higher)
-- npm (Node Package Manager)
+- Multiple image format conversion (JPEG, PNG, WebP, AVIF)
+- Image effects and filters
+  - Basic effects (Grayscale, Sepia, Invert, Blur)
+  - Color adjustments (Brightness, Contrast, Saturation, Hue)
+  - Artistic effects (Vintage, Vignette, Oil Painting, Posterize)
+  - Special effects (Noise, Pixelate, Duotone)
+- Image resizing with aspect ratio maintenance
+- Watermarking capabilities
+- Batch processing
+- Dark/Light theme support
+- Responsive design
+- Client-side processing (no server uploads)
 
 ## Installation
 
-1. Clone the repository or download the source code
-2. Navigate to the project directory
-3. Install dependencies:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/image-converter.git
+cd image-converter
+```
 
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-## Usage
-
-1. Start the server:
-
+3. Start the development server:
 ```bash
 npm start
 ```
 
-2. Open your web browser and navigate to `http://localhost:3000`
+The application will be available at `http://localhost:3000`.
 
-3. Select the desired conversion type from the dropdown menu
+## Development
 
-4. Upload images by either:
-   - Dragging and dropping them onto the drop zone
-   - Clicking the "Browse Files" button and selecting files
+### Running Tests
 
-5. Use the available actions for each image:
-   - Download: Convert and download the individual image
-   - Remove: Remove the image from the list
-   - Copy filename: Click on the filename to copy it to clipboard
+Run all tests:
+```bash
+npm test
+```
 
-6. Use the "Download All as ZIP" button to convert and download all images as a ZIP file
+Run tests in watch mode:
+```bash
+npm run test:watch
+```
 
-## Technical Details
+Generate coverage report:
+```bash
+npm run test:coverage
+```
 
-- Frontend: HTML5, CSS3, jQuery
-- Backend: Node.js with Express
-- Image Processing: Sharp
-- File Handling: Multer
-- ZIP Creation: Archiver
+### Code Quality
 
-## Notes
+Run ESLint:
+```bash
+npm run lint
+```
 
-- The application processes images in memory for better performance
-- Converted images maintain good quality (80% quality setting for lossy formats)
-- The interface is responsive and works well on different screen sizes
-- All file operations are handled securely on the server side 
+## Project Structure
+
+```
+image-converter/
+├── index.html          # Main application page
+├── privacy.html        # Privacy policy page
+├── terms.html         # Terms of service page
+├── script.js          # Main application logic
+├── theme.js          # Theme handling
+├── styles.css        # Styles
+├── tests.js          # Unit tests
+├── jest.setup.js     # Jest configuration
+└── package.json      # Project configuration
+```
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Performance Considerations
+
+- All image processing is done client-side
+- Large images (>5MB) are rejected to prevent browser crashes
+- Efficient memory management for batch processing
+- Lazy loading of images in the preview area
+- Optimized canvas operations
+
+## Security
+
+- No server-side storage of images
+- All processing done locally in the browser
+- Secure cookie handling
+- Content Security Policy implemented
+- Regular dependency updates
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Bootstrap for UI components
+- FontAwesome for icons
+- JSZip for ZIP file handling
+- Jest for testing framework 
