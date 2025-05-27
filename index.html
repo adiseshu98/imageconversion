@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Image Converter</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <h5>Upload Images</h5>
+                    <div id="dropZone" class="drop-zone mb-2">
+                        <div class="drop-zone-text">
+                            Drag & drop images here or click to upload
+                            <input type="file" class="file-input" id="imageInput" accept="image/*" multiple>
+                        </div>
+                    </div>
+                    <div class="text-end mb-2">
+                        <button class="btn btn-danger btn-sm" id="removeAllBtn" disabled>
+                            <i class="fas fa-trash-alt"></i> Remove All
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <h5>Convert To</h5>
+                            <select class="form-select" id="formatSelect">
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WebP</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5>Quality</h5>
+                            <input type="range" class="form-range" id="qualitySlider" min="1" max="100" value="80">
+                            <div class="text-center" id="qualityValue">80%</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5>Effects</h5>
+                            <select class="form-select mb-2" id="effectSelect">
+                                <option value="none">None</option>
+                                <option value="grayscale">Grayscale</option>
+                                <option value="sepia">Sepia</option>
+                                <option value="invert">Invert</option>
+                                <option value="blur">Blur</option>
+                                <option value="brightness">Brightness</option>
+                                <option value="contrast">Contrast</option>
+                                <option value="saturation">Saturation</option>
+                            </select>
+                            <div id="effectStrength" class="d-none">
+                                <input type="range" class="form-range" id="effectStrengthSlider" min="0" max="100" value="50">
+                                <div class="text-center" id="effectStrengthValue">50%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <h5>Resize</h5>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Width</span>
+                                <input type="number" class="form-control" id="resizeWidth" placeholder="Auto">
+                                <span class="input-group-text">px</span>
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Height</span>
+                                <input type="number" class="form-control" id="resizeHeight" placeholder="Auto">
+                                <span class="input-group-text">px</span>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="maintainAspectRatio" checked>
+                                <label class="form-check-label" for="maintainAspectRatio">
+                                    Maintain aspect ratio
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5>Advanced Options</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="autoRotate">
+                                <label class="form-check-label" for="autoRotate">
+                                    Auto-rotate based on EXIF data
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="stripMetadata">
+                                <label class="form-check-label" for="stripMetadata">
+                                    Strip metadata (EXIF, etc.)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="optimizeOutput">
+                                <label class="form-check-label" for="optimizeOutput">
+                                    Optimize output size
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button class="btn btn-primary" id="convertBtn" disabled>Convert</button>
+                    <button class="btn btn-success ms-2" id="downloadBtn" disabled>Download All</button>
+                    <button class="btn btn-info ms-2" id="downloadZipBtn" disabled>Download as ZIP</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4" id="previewArea">
+            <h5>Preview</h5>
+            <div class="row" id="imagePreview"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
