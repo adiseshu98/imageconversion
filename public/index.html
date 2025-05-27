@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Format Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Format Converter</h1>
+            <p class="subtitle">Convert your images to different formats easily</p>
+        </header>
+        
+        <div class="conversion-type-wrapper">
+            <select id="conversionType" class="conversion-select">
+                <option value="">Select Conversion Type</option>
+                <option value="png-to-webp">PNG to WEBP</option>
+                <option value="jpg-to-webp">JPG to WEBP</option>
+                <option value="png-to-jpg">PNG to JPG</option>
+                <option value="jpg-to-png">JPG to PNG</option>
+            </select>
+        </div>
+
+        <div id="dropZone" class="drop-zone">
+            <div class="drop-zone-text">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & Drop Images Here</p>
+                <span>or</span>
+                <button id="browseBtn" class="browse-btn">Browse Files</button>
+                <input type="file" id="fileInput" multiple accept="image/*">
+            </div>
+        </div>
+
+        <div id="previewContainer" class="preview-grid"></div>
+
+        <div id="actionButtons" class="action-buttons">
+            <button id="downloadAll" class="download-all-btn">
+                <i class="fas fa-download"></i> Download All as ZIP
+            </button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
